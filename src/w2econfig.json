@@ -1,0 +1,31 @@
+{
+    "withings:weight": {
+        "weight": {
+            "units": "kg",
+            "label": "Weight"
+        },
+        "fatMass": {
+            "units": "kg",
+            "label": "Fat mass"
+        },
+        "fatFree": {
+            "units": "percent",
+            "label": "Fat free"
+        }
+    },
+    "withings:bloodPressure": {
+        "heartRate": {
+            "units": "bpm",
+            "label": "Heart rate"
+        },
+        "systolic": {
+            "units": "mmHg",
+            "label": "Systolic blood pressure"
+        },
+        "diastolic": {
+            "units": "mmHg",
+            "label": "Diastolic blood pressure"
+        }
+    }
+
+}

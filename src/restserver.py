@@ -16,7 +16,7 @@ def mainpage():
 
 @app.route('/getalldata', methods=['GET'])
 def getalldata():
-    #try:
+    try:
         # Get credentials from request
         credentials = json.loads(str(request.headers["Authorization"]))
         logging.debug("Authorization credentials:" + str(credentials))
@@ -32,8 +32,8 @@ def getalldata():
         datalist = w2ecaller.fetchAllW2EDataForUser(w2ecreds["username"],w2ecreds["apikey"], starttime, endtime)
         return json.dumps(datalist, sort_keys=True, indent=4, separators=(',', ': '))
 
-    #except Exception as e:
-    #    return jsonpickle.encode(e.message), 500
+    except Exception as e:
+        return jsonpickle.encode(e.message), 500
 
 
 

@@ -5,5 +5,5 @@ import logging
 
 
 if __name__ =='__main__':
-    logging.getLogger().setLevel(logging.INFO)
+    logging.getLogger().setLevel(logging.DEBUG)
     restserver.app.run(host="0.0.0.0", port=8080,threaded=True,debug=True)

@@ -56,6 +56,40 @@
         "units": "seconds",
         "label": "Intense exercise"
       }
+    },
+    "withings:sleep": {
+      "minutesInBed": {
+        "units": "minutes",
+        "label": "Minutes in bed"
+      },
+      "awakeningsCount": {
+        "units": "count",
+        "label": "Awakenings count"
+      },
+      "minutesAsleep": {
+        "units": "minutes",
+        "label": "Minutes asleep"
+      },
+      "minutesAwake": {
+        "units": "minutes",
+        "label": "Minutes awake"
+      },
+      "sleepEfficiency": {
+        "units": "percent",
+        "label": "Sleep efficiency"
+      },
+      "minutesLightSleep": {
+        "units": "minutes",
+        "label": "Minutes light sleep"
+      },
+      "minutesDeepSleep": {
+        "units": "minutes",
+        "label": "Minutes deep sleep"
+      },
+      "minutesRemSleep": {
+        "units": "minutes",
+        "label": "Minutes REM sleep"
+      }
 
     }
 

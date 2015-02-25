@@ -33,7 +33,10 @@ def getalldata():
         return json.dumps(datalist, sort_keys=True, indent=4, separators=(',', ': '))
 
     except Exception as e:
-        return jsonpickle.encode(e.message), 500
+        if logging.getLogger().getEffectiveLevel() is not logging.DEBUG:
+            return jsonpickle.encode(str(e)), 500
+        else:
+            raise e
 
 
 

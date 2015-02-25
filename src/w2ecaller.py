@@ -13,6 +13,7 @@ def convertUnifiedToTimeSeries(startdate, unifiedjson):
         minusdays += 1
         if len(item) > 0:
             currentItem = item[0]
+            logging.debug("Current item: " + str(currentItem))
             if "date" in currentItem:
                 logging.debug("using date value")
                 measurementDateRaw = currentItem.pop("date", None)
@@ -76,9 +77,10 @@ def fetchAllW2EDataForUser(username, apikey, starttime, endtime):
         # Request samples
         samples = getW2EUnifiedData(username, apikey, starttime, endtime, source, datatype)
         for key, samplevalues in samples.items():
-            samplearray = samplesToArray(samplevalues)
-            guidata = createGuiDataFrame(datalabels[key]["label"], np.min(samplearray).item(), np.max(samplearray).item(), datalabels[key]["units"], samplevalues)
-            datalist.append(guidata)
+            if key in datalabels:
+                samplearray = samplesToArray(samplevalues)
+                guidata = createGuiDataFrame(datalabels[key]["label"], np.min(samplearray).item(), np.max(samplearray).item(), datalabels[key]["units"], samplevalues)
+                datalist.append(guidata)
     return datalist
 
 

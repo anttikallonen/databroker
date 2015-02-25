@@ -2,18 +2,30 @@ import requests, json, arrow
 from pytz import timezone
 from collections import defaultdict
 import numpy as np
+import logging
 
 
-def convertUnifiedToTimeSeries(unifiedjson):
+def convertUnifiedToTimeSeries(startdate, unifiedjson):
     samples = defaultdict(list)
+    minusdays = 0
+    logging.debug(unifiedjson)
     for item in unifiedjson:
-        if len(item) > 0 :
+        minusdays += 1
+        if len(item) > 0:
             currentItem = item[0]
-            measurementDateRaw = currentItem.pop("date", None)
-            measurementTz = timezone(currentItem.pop("timezone", None))
-            measurementDate = arrow.get(measurementDateRaw, tzinfo=measurementTz)
+            if "date" in currentItem:
+                logging.debug("using date value")
+                measurementDateRaw = currentItem.pop("date", None)
+                measurementTz = timezone(currentItem.pop("timezone", None))
+                measurementDate = arrow.get(measurementDateRaw, tzinfo=measurementTz)
+                timestamp = measurementDate.timestamp
+            else:
+                logging.debug("using minusdays")
+                measurementDate = startdate.replace(days=-minusdays)
+                logging.debug("measurement date is: " + str(measurementDate))
+                timestamp = measurementDate.timestamp
             for key, val in currentItem.items():
-                samples[key].append({"timestamp" : measurementDate.timestamp,
+                samples[key].append({"timestamp" : timestamp,
                                      "value" : val})
     return samples
 
@@ -37,7 +49,7 @@ def getW2EUnifiedData(username,apikey,starttime,endtime,source,datatype):
     r = requests.get(requesturl, headers=headers)
     jsondata = r.json()
 
-    return convertUnifiedToTimeSeries(jsondata)
+    return convertUnifiedToTimeSeries(tstart, jsondata)
 
 def samplesToArray(samples):
     dataarray = []

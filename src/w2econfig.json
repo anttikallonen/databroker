@@ -26,6 +26,37 @@
             "units": "mmHg",
             "label": "Diastolic blood pressure"
         }
+    },
+    "withings:activity": {
+      "steps": {
+        "units": "count",
+        "label": "Number of steps"
+      },
+      "distance": {
+        "units": "meters",
+        "label": "Distance travelled"
+      },
+      "elevation": {
+        "units": "meters",
+        "label": "Elevation travelled"
+      },
+      "caloriesActive": {
+        "units": "kcal",
+        "label": "Calories burned"
+      },
+      "moderate": {
+        "units": "seconds",
+        "label": "Moderate exercise"
+      },
+      "soft": {
+        "units": "seconds",
+        "label": "Soft exercise"
+      },
+      "intense": {
+        "units": "seconds",
+        "label": "Intense exercise"
+      }
+
     }
 
 }
